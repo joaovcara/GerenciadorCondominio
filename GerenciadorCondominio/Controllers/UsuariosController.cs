@@ -196,7 +196,7 @@ namespace GerenciadorCondominio.Controllers
         {
             Usuario usuario = await _usuarioRepositorio.SelectById(usuarioId);
             usuario.Status = StatusConta.Aprovado;
-            await _usuarioRepositorio.InsertUserFunction(usuario, "Locatario");
+            await _usuarioRepositorio.InsertUserFunction(usuario, "Locatário");
             await _usuarioRepositorio.AtualizarUsuario(usuario);
 
             return Json(true);
