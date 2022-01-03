@@ -1,0 +1,111 @@
+﻿@model IEnumerable<GerenciadorCondominio.BLL.Models.Usuario>
+
+@using GerenciadorCondominio.BLL.Models
+@{
+    ViewData["Title"] = "Locadores Cadastrados";
+}
+
+<div class="tabelas">
+    <div class="collection with-header">
+        <div class="collection-header grey darken-1">
+            <div class="row">
+                <div class="col s10">
+                    <h6 class="white-text">Locadores Cadastrados</h6>
+                </div>
+                <div class="col s2">
+                </div>
+            </div>
+        </div>
+        <div class="collection-item">
+            <table class="table-striped highlight">
+                <thead>
+                    <tr>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            CPF
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Telefone
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cpf)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+
+                            @if (item.Status == StatusConta.Analisando)
+                            {
+                                <td>
+                                    <span class="new badge purple darken-3" data-badge-caption="" id="@item.Id">
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="@item.Id">
+                                        <a class="btn-floating blue darken-4 btnAprovar" onclick="AprovarUsuario('@item.Id', '@item.UserName')">
+                                            <i class="material-icons">thumb_up</i>
+                                        </a>
+                                        <a class="btn-floating red darken-4 btnReprovar" onclick="ReprovarUsuario('@item.Id', '@item.UserName')">
+                                            <i class="material-icons">thumb_down</i>
+                                        </a>
+                                    </span>
+                                </td>
+                            }
+                            else if (item.Status == StatusConta.Aprovado)
+                            {
+                                <td>
+                                    <span class="new badge green darken-3" data-badge-caption="">
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <a class="btn-floating blue darken-4" asp-controller="Usuarios" asp-action="GerenciarUsuario" asp-route-usuarioId="@item.Id" asp-route-name="@item.UserName">
+                                        <i class="material-icons">group</i>
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="new badge orange darken-3" data-badge-caption="">
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </span>
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/OperacoesUsuario.js"></script>
+}
