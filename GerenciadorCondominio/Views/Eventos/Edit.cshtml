@@ -1,0 +1,58 @@
+﻿@model GerenciadorCondominio.BLL.Models.Evento
+
+@{
+    ViewData["Title"] = "Atualizar Evento";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Edit">
+            <div class="collection-header blue darken-3">
+                <h6 class="white-text">Atualizar Evento</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <input type="hidden" asp-for="EventoId" />
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Descricao" class="was-validated" id="Descricao" />
+                        <label asp-for="Descricao" id="Descricao"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Descricao"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Data" class="was-validated" id="Data" />
+                        <label asp-for="Data" id="Data"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Data"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Obsercacao" type="text" class="was-validated" id="Obsercacao" />
+                        <label asp-for="Obsercacao" id="Obsercacao"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Obsercacao"></span>
+                    </div>
+                </div>
+
+                <input type="hidden" asp-for="UsuarioId" />
+
+            </div>            
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small blue darken-3">Atualizar</button> &emsp;
+                <a asp-action="Index" asp-controller="Eventos">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/InicializarCalendario.js"></script>
+}

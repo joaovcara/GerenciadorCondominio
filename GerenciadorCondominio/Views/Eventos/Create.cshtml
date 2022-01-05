@@ -1,0 +1,56 @@
+﻿@model GerenciadorCondominio.BLL.Models.Evento
+
+@{
+    ViewData["Title"] = "Novo Evento";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Create">
+            <div class="collection-header green darken-3">
+                <h6 class="white-text">Novo Evento</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Descricao" class="was-validated" id="Descricao" />
+                        <label asp-for="Descricao" id="Descricao"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Descricao"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Data" type="text" class="was-validated" id="Data" />
+                        <label asp-for="Data" id="Data"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Data"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Obsercacao" class="was-validated" id="Obsercacao" />
+                        <label asp-for="Obsercacao" id="Obsercacao"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Obsercacao"></span>
+                    </div>
+                </div>
+                
+                <input type="hidden" asp-for="UsuarioId" />
+
+            </div>
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small green darken-3">Salvar</button> &emsp;
+                <a asp-action="Index" asp-controller="Eventos">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/InicializarCalendario.js"></script>
+}
