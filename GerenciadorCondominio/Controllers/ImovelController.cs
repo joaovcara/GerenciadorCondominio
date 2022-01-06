@@ -111,7 +111,7 @@ namespace GerenciadorCondominio.Controllers
                         await foto.CopyToAsync(fileStream);
                         imovel.Foto = "~/img/" + nomeFoto;
 
-                        //System.IO.File.Delete(TempData["DirFoto"].ToString().Replace("~", "wwwroot"));
+                        System.IO.File.Delete(TempData["DirFoto"].ToString().Replace("~", "wwwroot"));
                     }
                 }else
                     imovel.Foto = TempData["DirFoto"].ToString();
