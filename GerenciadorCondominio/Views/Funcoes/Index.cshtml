@@ -1,0 +1,70 @@
+﻿@model IEnumerable<GerenciadorCondominio.BLL.Models.Funcao>
+
+@{
+    ViewData["Title"] = "Minhas Funções";
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="tabelas">
+
+    <partial name="_Configuracoes" />
+
+    <div class="collection with-header">
+        <div class="collection-header grey darken-1">
+            <div class="row">
+                <div class="col s10">
+                    <h6 class="white-text">Minhas Funções</h6>
+                </div>
+
+                <div class="col s2">
+                    <a asp-controller="Funcoes" asp-action="Create" class="waves-effect waves-light btn-small btn-floating grey darken-4 tooltip" data-position="right" data-tooltip="Nova Função">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <table class="striped highlight responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descricao)
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descricao)
+                            </td>
+                            <td>
+                                <a asp-controller="Funcoes" asp-action="Edit" asp-route-id="@item.Id" class="btn-floating btn-small blue darken-4 tooltip" data-position="right" data-tooltip="Atualizar Função">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                                <a onclick="ConfirmarExclusao('@item.Id', '@item.Name', '@controller')" class="btn-floating btn-small modal-trigger red darken-4 tooltip" data-target="modal" data-position="right" data-tooltip="Excluir Função">
+                                    <i class="material-icons">delete_forever</i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="_ModalExcluir" />
+
+@section Scripts{
+    <script src="~/js/ConfirmarExclusao.js"></script>
+}
