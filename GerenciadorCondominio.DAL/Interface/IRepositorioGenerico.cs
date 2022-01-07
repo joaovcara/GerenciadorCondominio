@@ -11,6 +11,7 @@ namespace GerenciadorCondominio.DAL.Interface
         Task<TEntity> SelectById(int id);
         Task<TEntity> SelectById(string id);
         Task Insert(TEntity entity);
+        Task Insert(List<TEntity> entity);
         Task Update(TEntity entity);
         Task Delete(TEntity entity);
         Task Delete(int id);
