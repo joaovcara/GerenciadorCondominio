@@ -1,0 +1,107 @@
+﻿@model GerenciadorCondominio.BLL.Models.Imovel
+
+@{
+    ViewData["Title"] = "Atualizar Imovel";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div class="collection-header blue darken-3">
+                <h6 class="white-text">Atualizar Imovel</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+                <input type="hidden" asp-for="ImovelId" />
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Descricao" class="was-validated" id="Descricao" />
+                        <label asp-for="Descricao" id="Descricao"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Descricao"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Endereco" type="text" class="was-validated" id="Endereco" />
+                        <label asp-for="Endereco" id="Endereco"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Endereco"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Numero" class="was-validated" id="Numero" />
+                        <label asp-for="Numero" id="Numero"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Numero"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Bairro" class="was-validated" id="Bairro" />
+                        <label asp-for="Bairro" id="Bairro"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Bairro"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Cidade" class="was-validated" id="Cidade" />
+                        <label asp-for="Cidade" id="Cidade"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Cidade"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Estado" class="was-validated" id="Estado" />
+                        <label asp-for="Estado" id="Estado"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Estado"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="file-field input-field col s12">
+                        <div class="btn-small">
+                            <span>Selecione a foto</span>
+                            <input asp-for="Foto" type="file" class="validate" id="foto" />
+                        </div>
+
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select asp-for="LocatarioId" class="form-control validate" id="Locatario" asp-items="ViewBag.LocatarioId"></select>
+                        <label asp-for="LocatarioId" id="Locatario">Selecione o locatário</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select asp-for="ProprietarioId" class="form-control validate" id="Proprietario" asp-items="ViewBag.ProprietarioId"></select>
+                        <label asp-for="ProprietarioId" id="Proprietario">Selecione o proprietario</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small blue darken-3">Atualizar</button> &emsp;
+                <a asp-action="Index" asp-controller="Imovel">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/InicializarCalendario.js"></script>
+    <script src="~/js/IniciarSelectList.js"></script>
+}

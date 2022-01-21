@@ -83,6 +83,20 @@ namespace GerenciadorCondominio.DAL.Repositorios
             }
         }
 
+        public async Task Insert(List<TEntity> entity)
+        {
+            try
+            {
+                await _contexto.AddRangeAsync(entity);
+                await _contexto.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
         public async Task<IEnumerable<TEntity>> SelectAll()
         {
             try

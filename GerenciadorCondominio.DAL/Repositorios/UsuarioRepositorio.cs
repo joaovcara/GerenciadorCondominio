@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Security.Claims;
 
 namespace GerenciadorCondominio.DAL.Repositorios
 {
@@ -153,6 +154,45 @@ namespace GerenciadorCondominio.DAL.Repositorios
             try
             {
                 return await _gerenciadorUsuarios.AddToRolesAsync(usuario, funcoes);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public async Task<Usuario> SelectUserName(ClaimsPrincipal usuario)
+        {
+            try
+            {
+                return await _gerenciadorUsuarios.FindByNameAsync(usuario.Identity.Name);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public async Task<Usuario> SelectUserId(string id)
+        {
+            try
+            {
+                return await _gerenciadorUsuarios.FindByIdAsync(id);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public string CodificarSenha(Usuario usuario, string senha)
+        {
+            try
+            {
+                return _gerenciadorUsuarios.PasswordHasher.HashPassword(usuario, senha);
             }
             catch (Exception e)
             {
